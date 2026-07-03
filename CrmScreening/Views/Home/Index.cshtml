@@ -1,0 +1,55 @@
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4">CRM Screening</h1>
+    <p class="text-muted">ASP.NET Core MVC — in-memory demo covering all 5 tasks.</p>
+</div>
+
+<!-- Task 1 — Customer model & GetSummary() -->
+<section class="mb-5">
+    <h2 class="h4 border-bottom pb-2">Task 1 — Customer Summaries</h2>
+    <p class="text-muted">Two hardcoded customers, each shown via <code>Customer.GetSummary()</code>.</p>
+    <ul class="list-group">
+        @foreach (var customer in Model.SummaryCustomers)
+        {
+            <li class="list-group-item">@customer.GetSummary()</li>
+        }
+    </ul>
+</section>
+
+<!-- Task 2 — LINQ queries -->
+<section class="mb-5">
+    <h2 class="h4 border-bottom pb-2">Task 2 — LINQ Results</h2>
+
+    <div class="mb-3">
+        <h3 class="h6">1. Active customers sorted alphabetically by full name</h3>
+        <ol class="mb-0">
+            @foreach (var customer in Model.ActiveSortedByName)
+            {
+                <li>@customer.FullName <span class="text-muted">(@customer.Email)</span></li>
+            }
+        </ol>
+    </div>
+
+    <div class="mb-3">
+        <h3 class="h6">2. First customer with a Gmail address</h3>
+        @if (Model.FirstGmailCustomer is not null)
+        {
+            <p class="mb-0">@Model.FirstGmailCustomer.FullName — @Model.FirstGmailCustomer.Email</p>
+        }
+        else
+        {
+            <p class="mb-0 text-muted">None found (null).</p>
+        }
+    </div>
+
+    <div class="mb-3">
+        <h3 class="h6">3. Customers created in the current year (@Model.CurrentYear)</h3>
+        <p class="mb-0"><span class="badge bg-primary">@Model.CreatedThisYearCount</span> customer(s)</p>
+    </div>
+</section>
+
+<a class="btn btn-primary" asp-controller="Customers" asp-action="Index">Go to Customers list &raquo;</a>
