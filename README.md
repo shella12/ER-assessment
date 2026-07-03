@@ -10,7 +10,19 @@ cd CrmScreening
 dotnet run
 ```
 
-Then open the URL shown in the console (e.g. `https://localhost:xxxx`).
+Then open in your browser:
+
+### 👉 http://localhost:5205
+
+`dotnet run` also prints the exact URL in the console (`Now listening on: http://localhost:5205`).
+
+To run over HTTPS instead:
+
+```bash
+dotnet run --launch-profile https
+```
+
+…then open **https://localhost:7277** (first time, trust the dev cert with `dotnet dev-certs https --trust`, or just use the http URL above).
 
 ## Where each task lives
 
